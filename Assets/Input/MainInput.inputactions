@@ -1,0 +1,34 @@
+{
+    "name": "MainInput",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "eeaf94bc-260f-4686-9a7d-cddee5e56711",
+            "actions": [
+                {
+                    "name": "PerceptionView",
+                    "type": "Button",
+                    "id": "c1b86747-568f-44db-970d-1923483fd22b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e9da440c-ead5-4862-a33e-61a5a8c5e95a",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PerceptionView",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
