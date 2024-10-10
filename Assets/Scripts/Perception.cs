@@ -3,23 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PlayerInput))]
 public class Perception : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera cam;
     [SerializeField] private Image overlay;
     [SerializeField] private float opacityChangeSpeed;
-    private MainInput input;
     private bool _isActive = false;
     private float _transparency;
 
+    private StarterAssets.ThirdPersonController _controller;
+
+    private float _defaultSpeed;
     private GameObject[] _hidden;
 
     // Start is called before the first frame update
     private void Awake()
     {
-        input = new MainInput();
-        input.Gameplay.PerceptionView.started += _ => PerceptionAction();
         _transparency = overlay.color.a;
         overlay.enabled = true;
         overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0);
@@ -28,6 +30,8 @@ public class Perception : MonoBehaviour
     private void Start()
     {
         _hidden = GameObject.FindGameObjectsWithTag("Hidden");
+        _controller = GetComponent<StarterAssets.ThirdPersonController>();
+        _defaultSpeed = _controller.MoveSpeed;
     }
 
     /// <summary>
@@ -51,29 +55,20 @@ public class Perception : MonoBehaviour
         }
     }
 
-    #region Enable/Disable
-
-    private void OnEnable()
+    // gets called by the PlayerInput
+    public void OnPerceptionView(InputValue value)
     {
-        input.Gameplay.Enable();
-    }
+        if (!value.isPressed) return;
 
-    private void OnDisable()
-    {
-        input.Gameplay.Disable();
-    }
-
-    #endregion
-    private void PerceptionAction()
-    {
         _isActive = !_isActive;
         cam.enabled = _isActive;
         Color color = overlay.color;
         overlay.color = color;
+        _controller.MoveSpeed = _isActive ? _defaultSpeed / 2f : _defaultSpeed;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (_isActive && overlay.color.a < _transparency)
         {
