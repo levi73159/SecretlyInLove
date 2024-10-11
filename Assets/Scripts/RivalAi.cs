@@ -17,6 +17,10 @@ public class RivalAi : MonoBehaviour
     [SerializeField] private Transform[] targets;
     [SerializeField] private TargetSelectionMethod selectionMethod = TargetSelectionMethod.None;
     [SerializeField] private float nextTargetInterval = 5f; // every x seconds we want to select new target
+    [SerializeField]
+    [Tooltip("If this is negtive it will select a random start")]
+    private int startTarget = -1;
+
     private NavMeshAgent _agent;
     private int _inc = 1; // onlu use for order
     private int _currentTargetIndex = 0;
@@ -27,11 +31,18 @@ public class RivalAi : MonoBehaviour
     {
         _agent = GetComponent<NavMeshAgent>();
         _nextTargetTime = nextTargetInterval;
+
+        if (startTarget < 0)
+            _currentTargetIndex = Random.Range((int)0, targets.Length);
+        else
+            _currentTargetIndex = startTarget;
+
+        _agent.Warp(CurrentTarget.position);
     }
 
-    private void NextTarget()
+    private void NextTarget(TargetSelectionMethod method)
     {
-        switch (selectionMethod)
+        switch (method)
         {
             case TargetSelectionMethod.None: return;
             case TargetSelectionMethod.Random:
@@ -67,6 +78,6 @@ public class RivalAi : MonoBehaviour
         if (_nextTargetTime > 0) return;
 
         _nextTargetTime = nextTargetInterval;
-        NextTarget();
+        NextTarget(selectionMethod);
     }
 }
