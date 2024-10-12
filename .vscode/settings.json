@@ -51,5 +51,8 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "SecretlyInLove.sln"
+    "dotnet.defaultSolution": "SecretlyInLove.sln",
+    "cSpell.enableFiletypes": [
+        "!csharp"
+    ]
 }

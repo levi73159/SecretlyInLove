@@ -5,7 +5,7 @@ using Cinemachine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(PlayerInput), typeof(GameplayInput))]
 public class Perception : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera cam;
@@ -14,7 +14,9 @@ public class Perception : MonoBehaviour
     private bool _isActive = false;
     private float _transparency;
 
-    private StarterAssets.ThirdPersonController _controller;
+    private GameplayInput _input;
+
+    private ThirdPersonController _controller;
 
     private float _defaultSpeed;
     private GameObject[] _hidden;
@@ -30,7 +32,8 @@ public class Perception : MonoBehaviour
     private void Start()
     {
         _hidden = GameObject.FindGameObjectsWithTag("Hidden");
-        _controller = GetComponent<StarterAssets.ThirdPersonController>();
+        _controller = GetComponent<ThirdPersonController>();
+        _input = GetComponent<GameplayInput>();
         _defaultSpeed = _controller.MoveSpeed;
     }
 
@@ -60,16 +63,19 @@ public class Perception : MonoBehaviour
     {
         if (!value.isPressed) return;
 
-        _isActive = !_isActive;
-        cam.enabled = _isActive;
-        Color color = overlay.color;
-        overlay.color = color;
-        _controller.MoveSpeed = _isActive ? _defaultSpeed / 2f : _defaultSpeed;
+        SetActive(!_isActive);
+    }
+
+    public void SetActive(bool active) {
+        _isActive = active;
+        cam.enabled = active;
+        _controller.MoveSpeed = active ? _defaultSpeed / 2f : _defaultSpeed;
     }
 
     // Update is called once per frame
     private void Update()
     {
+        if (_input.Sprint) SetActive(false); // no sprinting durrint perception
         if (_isActive && overlay.color.a < _transparency)
         {
             Color color = overlay.color;
