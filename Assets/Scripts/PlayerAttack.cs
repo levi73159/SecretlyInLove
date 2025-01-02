@@ -35,10 +35,16 @@ public class PlayerAttack : MonoBehaviour
         if (!Physics.Raycast(orgin.position, orgin.forward, out var hitInfo, actualDistance, attackableLayer)) return;
 
         // we have hit somthing
+        if (hitInfo.collider.TryGetComponent<NavMeshAgent>(out var agent))
+            agent.enabled = false;
+        
         if (hitInfo.collider.TryGetComponent<StudentsAI>(out var ai))
-            ai.Kill();
+            ai.enabled = false;
 
+        hitInfo.collider.AddComponent<Rigidbody>(); // adds gravity to enemy
+        hitInfo.collider.GetComponent<Renderer>().material.color = Color.red;
     }
+
     private void OnDrawGizmosSelected()
     {
         if (orgin != null)
