@@ -1,0 +1,15 @@
+Adding elements from Unity
+--------------------------------------------------
+
+Adding elements from Library/PackageCache/com.unity.services.core@1.12.5/Runtime/PrivacyInfo.xcprivacy
+	NSPrivacyAccessedAPITypes:
+		0:
+			NSPrivacyAccessedAPIType:
+				NSPrivacyAccessedAPICategoryUserDefaults
+			NSPrivacyAccessedAPITypeReasons:
+				0:
+					CA92.1
+
+	NSPrivacyTracking:
+		False
+

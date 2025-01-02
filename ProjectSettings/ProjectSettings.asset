@@ -516,6 +516,13 @@ PlayerSettings:
       m_Height: 720
       m_Kind: 1
       m_SubKind: 
+  - m_BuildTarget: VisionOS
+    m_Icons:
+    - m_Textures: []
+      m_Width: 1024
+      m_Height: 1024
+      m_Kind: 0
+      m_SubKind: 
   m_BuildTargetBatching: []
   m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs:
@@ -923,11 +930,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 4451089e-fe70-4897-96d3-e8e11dc5e49f
+  cloudProjectId: da8dbdb2-f881-42de-9929-4a8674ec0d31
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: SecretlyInLove 2024-10-08_16-07-25
-  organizationId: levi6706
+  projectName: SecretlyInLove
+  organizationId: secretlyinlove
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
