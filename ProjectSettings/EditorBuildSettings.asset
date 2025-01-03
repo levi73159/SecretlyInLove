@@ -9,7 +9,13 @@ EditorBuildSettings:
     path: Assets/ThirdPersonController/Scenes/Playground.unity
     guid: e9017d5f96b9f09489b4b37e1d6eb914
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7,
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: d6c148b75e5b840fa89af21bea6c8ab3,
+      type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
+      guid: 2277e054a385b46229f4efe7d3f8782e, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 8df52aef5a0eb41b491eedd873dd1dc7,
       type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 710156e0ce7f39463b6210d39f92819f,
       type: 3}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 6d3b9360b5941408c8b275651e5e843f,
+      type: 2}
